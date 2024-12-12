@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            height: 100%;
+            width: 100%;
+            background-color: rgba(255, 255, 0, 0.264);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #calci
+        {
+            height: 75%;
+            width: 25%;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        #output_screen
+        {
+            height: 40%;
+            width: 100%;
+            text-align: end;
+            display: flex;
+            align-items: center;
+            
+        }
+        #input_screen
+        {
+            height: 60%;
+            width: 100%;
+            display: flex;
+
+        }
+        #default{
+            font-size: 70px;
+            width: 100%;
+            height: 40%;
+            /* margin-left: 50%; */
+            margin-top: 20%;
+            text-align: end;
+            border: none;
+            margin-right: 3%;
+        }
+        #operators
+        {
+            width: 20%;
+            height: 100%;
+            background-color: rgba(255, 255, 0, 0.731);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8% 0%;
+        }
+        .signs
+        {
+            height: 10%;
+            width: 100%;
+            text-align: center;
+        }
+        #numbers
+        {
+            width: 80%;
+            height: 100%;
+            background-color: rgb(87, 87, 87);
+            display: flex;
+            flex-direction: column;
+            padding: 8%;
+            justify-content: space-between;
+            /* padding-bottom: 0% !important; */
+            height: 100%;
+        }
+        .series
+        {
+            display: flex;
+            justify-content: space-between;
+        }
+        .count
+        {
+            color: white;
+        }
+        
+        .fa-divide
+        {
+            font-size: small;
+        }
+        #back
+        {
+            position: absolute;
+            width: 5%;
+            height: 10%;
+            text-align: center;
+            padding: .7%;
+            top: 76%;
+            left: 37.5%;
+        }
+        #back_btn
+        {
+            width: 100%;
+            height: 100%;
+            border-radius: 40px;
+            background-color: yellow;
+        }
+        #series_4
+        {
+            height: 10%;
+           display: flex; 
+           text-align: center;
+        }
+        .count,#back_btn,.signs:hover{
+            cursor: pointer;
+        }
+        #eq
+        {
+            background: none;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="calci">
+        <div id="output_screen">
+            <input id="default" value="0"></input>
+        </div>
+        <div id="input_screen">
+            <div id="back">
+                <button id="back_btn" >AC</button>
+            </div>
+            <div id="numbers">
+               
+                <div class="series">
+                    <div class="count counter">7</div>
+                    <div class="count counter">8</div>
+                    <div class="count counter">9</div>
+                </div>
+                <div class="series">
+                    <div class="count counter">4</div>
+                    <div class="count counter">5</div>
+                    <div class="count counter">6</div>
+                </div>
+                <div class="series">
+                    <div class="count counter">1</div>
+                    <div class="count counter">2</div>
+                    <div class="count counter">3</div>
+                </div>
+                <div class="series" id="series_4">
+                    <div class="count counter">A</div>
+                    <div class="count counter">0</div>
+                    <button class="count" id="eq">=</button>
+                    
+                </div>
+            </div>
+            <div id="operators">
+                <div class="signs counter">/</div>
+                <div class="signs counter">*</div>
+                <div class="signs counter">-</div>
+                <div class="signs counter">+</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            const display = document.getElementById('default');
+            const num = document.querySelectorAll('.counter');
+            let currntInput = '';
+            let oprator = '';
+            let prviousValue = '';
+
+            eq.onclick = function(){
+                // alert("heeehe");
+                console.log(display.value);
+                display.value = eval(display.value);
+            }
+
+            back_btn.onclick = function(){
+                // alert("heeehe");
+                document.getElementById('default').value = '0';
+                currntInput = '';
+                oprator = '';
+                prviousValue = '';
+            }
+
+            num.forEach(btn => {
+                btn.addEventListener('click',()=>{
+                    const value = btn.textContent;
+
+                    
+                
+                    if(value){
+                        if(display.value == '0'){
+                            display.value = value;
+                        }
+                        else
+                        display.value += value;
+                    }
+                    
+            })
+        })
+
+        // opr.forEach(sign => {
+        //                 sign.addEventListener('click',()=>{
+        //                   const value_2 = sign.textContent;
+
+        //                     if(value_2){
+        //                         if(display.value)
+        //                         console.log(value_1)
+        //                         display.value = value_1 + value_2;
+        //                         else
+        //                         display.value = '0';
+        //                     }
+        //                 })
+        //             })
+
+        });
+    </script>
+</body>
+</html>
